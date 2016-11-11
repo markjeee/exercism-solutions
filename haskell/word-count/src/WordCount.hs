@@ -4,11 +4,7 @@ import Data.Char
 import Data.List
 import Data.Map (fromList)
 
-wordCount s = fromList $ zip wfa wc
-  where
-    wa = groupByWords $ s
-    wfa = (map (\x -> head x) wa)
-    wc = map (\x -> length x) wa
+wordCount s = fromList $ map (\s -> (head s, length s)) $ groupByWords s
 
 normCase :: String -> String
 normCase s = [ toLower x | x <- s ]

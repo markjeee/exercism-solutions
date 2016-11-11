@@ -5,14 +5,18 @@ import Data.Foldable     (for_)
 import Test.Hspec        (Spec, describe, it, shouldBe)
 import Test.Hspec.Runner (configFastFail, defaultConfig, hspecWith)
 
-import Roman (numerals)
+import Roman
 
 main :: IO ()
 main = hspecWith defaultConfig {configFastFail = True} specs
 
 specs :: Spec
-specs = describe "roman-numerals" $
-          describe "numerals" $ for_ cases test
+specs = describe "roman-numerals" $ do
+  exercismSpecs
+
+exercismSpecs :: Spec
+exercismSpecs = describe "numerals" $ do
+  for_ cases test
   where
 
     test Case{..} = it explanation assertion
